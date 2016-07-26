@@ -82,3 +82,5 @@ profile/benchmark-dictionary
 profile/benchmark-registry
 
 *.pyc
+
+.vagrant
