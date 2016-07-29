@@ -15,4 +15,8 @@ Vagrant.configure(2) do |config|
   config.vm.define "el7" do |x|
   	x.vm.box = "bento/centos-7.2"
   end
+
+  config.vm.define "fc23" do |x|
+    x.vm.box = "bento/fedora-23"
+  end
 end
