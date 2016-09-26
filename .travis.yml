@@ -1,13 +1,23 @@
 language: c
 compiler:
- - gcc
- - clang
+- gcc
+- clang
 before_install:
- - sudo apt-get update -qq
- - sudo apt-get install -qq automake make libcap2-bin zlib1g-dev uuid-dev
+- sudo apt-get update -qq
+- sudo apt-get install -qq automake make libcap2-bin zlib1g-dev uuid-dev
 script:
-   # default build
- - ./autogen.sh && ./configure && make -j4
-
-   # test installer
- - fakeroot ./netdata-installer.sh --install $HOME --dont-wait --dont-start-it
+- "./autogen.sh && ./configure && make -j4"
+- fakeroot ./netdata-installer.sh --install $HOME --dont-wait --dont-start-it
+env:
+  global:
+  - secure: "V7YPtGnALZyDdFJSuTijIWLtggJbXtjXHpcDet66JQeE5X+Q1yOc20k3Vl5fP1ig6YiJfnE6dRHko0VlVMs23R7nKPFma9ARw1YZbTwWrbMhvSfpWdhDA9HYipa6lsCrvBFQsaJrji5XmeHXoOTCJOnL4N7/y6MO5nSqr4Uvj7eSUMbKlB1xzznx5euDyrtWCxAG8Q5hlaj1zM+RYmXif4jYhGlgg4vhgNyusL+J8G6S1haFPkzOKqD8ORvqp9gza2GxAMM9dflF1A/TWLVGne9RMjGSkKxzlFjPoqwzh/Hm8E4skDDnlgRcYkspJRv4Xq5rwcmy8AQ1OXkwWnZ3FLbruPPLezEoB4Ugwi7PDDtmYVAZFP3Qgb6M5nnpgNpv3qPefjwgojNV7Zjg3sxGU1fEFwTfGK23ZT9zQvtibRwTXheeKezaSI/WvwKko566J9hSCM17DHGB27ti2/TFO1pKwlwhXG2MtTB7h4MmB+v4KVgNNL+ynL30vPPq9ysnw6V2qyQ+KsiVQghej4HaUjWvSoK4oWjak5u/QcDsIf8yw2u7Of/FFlOQw6/h3OLBtc9GjIns7/I63ixG5NxQFJXR8Dg2JNni1A0Sxj349rYf6wmvxXN6Dbe0o/qQtjN6r0eK5JaP/bAnSVYUcbMml04Y3euiBwZw4hSWpRL68dU="
+addons:
+  coverity_scan:
+    project:
+      name: jasonwbarnett/netdata
+      version: 0.1
+      description: netdata
+    notification_email: jason.w.barnett@gmail.com
+    build_command_prepend: "./autogen.sh && ./configure"
+    build_command: make
+    branch_pattern: coverity_scan
