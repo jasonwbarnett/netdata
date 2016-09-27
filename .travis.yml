@@ -19,5 +19,5 @@ addons:
       description: netdata
     notification_email: jason.w.barnett@gmail.com
     build_command_prepend: "./autogen.sh && ./configure"
-    build_command: make
+    build_command: make -j4
     branch_pattern: coverity_scan
